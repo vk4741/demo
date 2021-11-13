@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="panel-heading">
+    <h2>Update Book Form</h2>
+  </div>
+  <form #updateBookForm="ngForm">
+
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" id="title"  name="title" [(ngModel)]='book.title' required #title="ngModel">
+      <small class="form-text text-muted" *ngIf="title.touched && !title.valid">Please Enter Title</small>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input type="text" class="form-control" id="author"  name="author" [(ngModel)]='book.author' required #author="ngModel">
+      <small class="form-text text-muted" *ngIf="author.touched && !author.valid">Please Enter Author Name</small>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <input type="text" class="form-control" id="category"  name="category"
+        [(ngModel)]='book.category' required #category="ngModel">
+        <small class="form-text text-muted" *ngIf="category.touched && !category.valid">Please Enter Category</small>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="update()" [disabled]="!updateBookForm.valid">Update</button>
+  </form>
+
+
+  <button class="btn btn-primary" (click)=toInventory() >Back</button>
+</div>

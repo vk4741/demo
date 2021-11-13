@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>Add Book Form</h2>
+  <form #addNewBookForm="ngForm" (submit)="addNewBook(addNewBookForm)">
+    <div class="form-group">
+      <label for="id">id:</label>
+      <input type="number"  placeholder="Enter id"
+       name="id"  required ngModel/>
+    </div>
+
+
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control"  placeholder="Enter title"
+       name="title"  required ngModel #title="ngModel"/>
+       <small class="form-text text-muted" *ngIf="title.touched && !title.valid">Please Enter Id</small>
+    </div>
+    <!-- <div *ngIf="!title1.valid && title1.touched">
+    <div [hidden]
+     class="alert alert-danger">
+  title is required
+</div>
+</div> -->
+
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input type="text" class="form-control"  placeholder="Enter author"
+       name="author"  required ngModel #author="ngModel"/>
+       <small class="form-text text-muted" *ngIf="author.touched && !author.valid">Please Enter Author Name</small>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="category">Category:</label>
+      <input type="text" class="form-control" id="category" placeholder="Enter categry" name="category"
+        [(ngModel)]='category' list="categories"/>
+        <datalist id="categories" name="category" [(ngModel)]='category' >
+          <option *ngFor="let book of bookList">{{book.category}}</option>
+        </datalist>
+    </div> -->
+    <div class="form-group">
+    <label  class="form-label">Category :  </label>
+<input  list="categories"  placeholder="Enter category" name="category"
+ required ngModel #category="ngModel"/>
+ <small class="form-text text-muted" *ngIf="category.touched && !category.valid">Please Select a Category</small>
+<datalist id="categories" >
+  <option *ngFor="let book of uniquecat">{{book}}</option>
+</datalist>
+</div>
+
+    <button type="submit" class="btn btn-default" [disabled]="!addNewBookForm.valid" >Submit</button>
+  </form>
+</div>
