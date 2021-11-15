@@ -1,0 +1,29 @@
+<!-- <button (click)= "showwishlist()" class="btn btn-default">Show wishlist</button> -->
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Book List</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped ">
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Category</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of booklist">
+            <td>{{ book._id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.category }}</td>
+            <td *ngIf="!book.isRented"><button (click)="rent(book._id)" >Rent</button></td>
+            <td *ngIf="book.isRented"><p>Book rented</p></td>
+            <td><button (click)="removeFromWishlist(book._id)" >Remove from wishlist</button></td>
+            <td><button (click)="addtocart(book._id)">Add To Cart</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
