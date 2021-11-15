@@ -1,32 +1,37 @@
-<div class="container">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <h2>Update Book Form</h2>
   </div>
-  <form #updateBookForm="ngForm">
+  <form #updateBookForm="ngForm" id="editbook" class="panel-body" >
 
     <div class="form-group">
-      <label for="title">Title:</label>
+      <label for="title">Title:</label> <span class="notif" *ngIf="title.value!=og_book.title">Modified !</span>
       <input type="text" class="form-control" id="title"  name="title" [(ngModel)]='book.title' required #title="ngModel">
       <small class="form-text text-muted" *ngIf="title.touched && !title.valid">Please Enter Title</small>
+      
     </div>
 
     <div class="form-group">
-      <label for="author">Author:</label>
+      <label for="author">Author:</label> <span class="notif" *ngIf="author.value!=og_book.author">Modified !</span>
       <input type="text" class="form-control" id="author"  name="author" [(ngModel)]='book.author' required #author="ngModel">
       <small class="form-text text-muted" *ngIf="author.touched && !author.valid">Please Enter Author Name</small>
     </div>
 
     <div class="form-group">
-      <label for="category">Category:</label>
-      <input type="text" class="form-control" id="category"  name="category"
+      <label for="category" class="form-label">Category:</label><span class="notif" *ngIf="category.value!=og_book.category">Modified !</span>
+      <input list="categories" class="form-control" id="category"  name="category"
         [(ngModel)]='book.category' required #category="ngModel">
         <small class="form-text text-muted" *ngIf="category.touched && !category.valid">Please Enter Category</small>
-
+        <datalist id="categories" >
+          <!--<option *ngFor="let book of bookList">{{book.category}}</option>-->
+        </datalist>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="update()" [disabled]="!updateBookForm.valid">Update</button>
+    <button type="submit" class="btn btn-success" (click)="update()" [disabled]="!updateBookForm.valid" id="editsubmit">Update</button>
+    
+    <button class="btn btn-secondary" (click)="resetdefault()" id="reset-button">Reset</button>
   </form>
 
 
-  <button class="btn btn-primary" (click)=toInventory() >Back</button>
+  <button class="btn btn-primary" id='back-button' (click)=toInventory() ><-Back</button>
 </div>

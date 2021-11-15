@@ -12,6 +12,7 @@ export class EditbookComponent implements OnInit {
 
   book : Book;
   bookid:any;
+  og_book : Book;
 
   constructor(
     private bookdataService: BooksdataService,
@@ -19,6 +20,7 @@ export class EditbookComponent implements OnInit {
     private activatedRoute:ActivatedRoute
   ) {
     this.book =new Book()
+    this.og_book =new Book()
     this.activatedRoute.params.subscribe(newp=>{
       this.bookid=parseInt(newp['id']);})
   }
@@ -27,6 +29,7 @@ export class EditbookComponent implements OnInit {
     this.bookdataService.getBook(this.bookid).subscribe(
       (book) => {
         this.book = book;
+        Object.assign(this.og_book,book);
       },
       (err) => console.log('Error in fetching data')
     );
@@ -39,5 +42,10 @@ export class EditbookComponent implements OnInit {
   update(){
     this.bookdataService.editBook(this.bookid,this.book).subscribe()
     this.toInventory()
+    alert("book updated successfully")
+  }
+
+  resetdefault(){
+    Object.assign(this.book,this.og_book)
   }
 }

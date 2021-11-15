@@ -1,3 +1,31 @@
 input.ng-touched.ng-invalid {
   border:1px solid red;
 }
+
+#back-button{
+  float:right;
+  width:10%;
+  height:30px
+}
+
+#editbook{
+  width: 50%;
+}
+
+#editsubmit{
+  width: 15%;
+  height:40px;
+}
+
+.notif{
+  background-color: orange;
+  color:brown;
+  border-radius: 5px;
+  margin-left: 10px;
+  width:10%;
+  padding:3px;
+}
+
+#reset-button{
+  float:right;
+}

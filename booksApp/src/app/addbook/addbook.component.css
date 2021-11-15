@@ -1,3 +1,18 @@
 input.ng-touched.ng-invalid {
   border:1px solid red;
 }
+
+#addbook{
+  width: 50%;
+}
+
+#addsubmit{
+  width: 15%;
+  height:40px;
+}
+
+#back-button{
+  float:right;
+  width:10%;
+  height:30px
+}
