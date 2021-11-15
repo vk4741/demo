@@ -44,7 +44,7 @@
         required ngModel #category="ngModel"/>
       <small class="form-text text-muted" *ngIf="category.touched && !category.valid">Please Select a Category</small>
       <datalist id="categories" >
-        <option *ngFor="let book of bookList">{{book.category}}</option>
+        <option *ngFor="let book of uniquecat">{{book}}</option>
       </datalist>
     </div>
 
