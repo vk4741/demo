@@ -86,6 +86,7 @@ export class BooksListComponent implements OnInit {
       if(flag == false){
        alert("Book added to cart")
       this.bookdataService.addtocart({username : window.localStorage.getItem('username'), bookid:id}).subscribe()
+      window.location.reload()
       }
 
       else{

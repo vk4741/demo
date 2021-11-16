@@ -96,6 +96,7 @@ export class WishlistComponent implements OnInit {
         console.log(wish._id)
         this.booksdataService.removeFromWishlist(wish._id).subscribe(response=>{
           console.log(response)
+          window.location.reload()
         },err=>{console.log("Error in removing from wishlist"+err)})
       }
     }

@@ -37,5 +37,5 @@ var userSchema = new Schema({
 })
 
 
-var userdetailsdb= mongoose.model('new_user_table',userSchema);//table name is Users_det_table
+var userdetailsdb= mongoose.model('users',userSchema);//table name is Users_det_table
 module.exports=userdetailsdb;
