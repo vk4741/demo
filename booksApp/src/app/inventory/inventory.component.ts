@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class InventoryComponent implements OnInit {
   bookList!: Array<Book>;
+  sID!:number
   constructor(
     private bookdataService: BooksdataService,
     private router: Router
@@ -24,22 +25,22 @@ export class InventoryComponent implements OnInit {
     );
   }
 
-  delete(id: number) {
-    var r = confirm("Are you sure you want to delete this book?");
-    if (r == true) {
-      this.bookdataService.deleteBook(id).subscribe();
+  delete() {
+  
+      this.bookdataService.deleteBook(this.sID).subscribe();
       
       window.location.reload();
-      alert("Book deleted successfully")
+      alert("Book deleted successfully = " +this.sID)
     
-    } else {
-      window.location.reload();
-    }
+   
   }
   addnav() {
     this.router.navigate(['/addbooks']);
   }
   editnav(id: number){
     this.router.navigate(["/editbook",id])
+  }
+  saveID(saveID:number){
+    this.sID=saveID
   }
 }
