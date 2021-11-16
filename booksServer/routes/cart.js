@@ -1,7 +1,8 @@
 const router = require('express').Router()
 var Cart = require('../cart.model')
+const auth = require("../middleware/auth");
 
-router.get('/getcart/:username',(req,res)=>{
+router.get('/getcart/:username', auth ,(req,res)=>{
     Cart.find({username:req.params.username},(err,cart)=>{
         if(err){
             res.send("error had occured"+err)
@@ -12,7 +13,7 @@ router.get('/getcart/:username',(req,res)=>{
     })
 })
 
-router.post('/addcart',(req,res)=>{
+router.post('/addcart', auth ,(req,res)=>{
     var newCart = new Cart({
         username : req.body.username,
         bookid : req.body.bookid
@@ -29,7 +30,7 @@ router.post('/addcart',(req,res)=>{
 })
 
 
-router.delete('/removefromcart/:id',(req,res)=>{
+router.delete('/removefromcart/:id',auth ,(req,res)=>{
     Cart.findOneAndDelete({_id:req.params.id},(err)=>{
         if(err) {
             res.send({message:'Error in deleting book from the cart'})

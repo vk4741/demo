@@ -1,7 +1,8 @@
 const router = require('express').Router()
 var Book = require('../Book.model')
+const auth = require("../middleware/auth");
 
-router.get('/getbooks',(req,res)=>{
+router.get('/getbooks',auth,(req,res)=>{
     Book.find({},(err,Books)=>{
         if(err){
             res.send("error had occured")
@@ -12,7 +13,7 @@ router.get('/getbooks',(req,res)=>{
     })
 })
 
-router.get('/getbook/:id',(req,res)=>{
+router.get('/getbook/:id',auth,(req,res)=>{
     Book.findOne({_id:req.params.id},(err,book)=>{
         if(err){
             res.send("error had occured")
@@ -23,7 +24,7 @@ router.get('/getbook/:id',(req,res)=>{
     })
 })
 
-router.get('/getbookusername/:username',(req,res)=>{
+router.get('/getbookusername/:username',auth,(req,res)=>{
     Book.find({username:req.params.username},(err,books)=>{
         if(err){
             res.send("error had occured"+err)
@@ -34,7 +35,7 @@ router.get('/getbookusername/:username',(req,res)=>{
     })
 })
 
-router.post('/addbook',(req,res)=>{
+router.post('/addbook',auth,(req,res)=>{
     var newBook = new Book({
         _id: req.body._id,
         title: req.body.title,
@@ -54,8 +55,8 @@ router.post('/addbook',(req,res)=>{
     })
 })
 
-router.put('/updatebook/:id',(req,res)=>{
-    Book.findOneAndUpdate({_id:req.params.id},{$set:{title: req.body.title,author:req.body.author,category:req.body.category}},(err,book)=>{
+router.put('/updatebook/:id',auth,(req,res)=>{
+    Book.findOneAndUpdate({_id:req.params.id},{$set:{title: req.body.title}},(err,book)=>{
         if(err){
             res.send("error in updating book")
         }
@@ -65,7 +66,7 @@ router.put('/updatebook/:id',(req,res)=>{
     })
 })
 
-router.put('/rentbook/:id',(req,res)=>{
+router.put('/rentbook/:id',auth,(req,res)=>{
     Book.findOneAndUpdate({_id:req.params.id},{$set:{isRented: req.body.isRented,username: req.body.username}},(err,book)=>{
         if(err){
             res.send("error in updating book")
@@ -76,7 +77,7 @@ router.put('/rentbook/:id',(req,res)=>{
     })
 })
 
-router.delete('/deletebook/:id',(req,res)=>{
+router.delete('/deletebook/:id',auth,(req,res)=>{
     Book.findOneAndRemove({_id:req.params.id},(err,book)=>{
         if(err){
             res.send("error in deleting book")
