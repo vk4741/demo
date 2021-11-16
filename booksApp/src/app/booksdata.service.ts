@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from './Book';
 import { Wishlist } from './wishlist';
@@ -10,58 +10,75 @@ import { Cart } from './cart';
 })
 export class BooksdataService {
 
+  token = sessionStorage.getItem('token')
+  token2 : any
+
   constructor(private http:HttpClient) { }
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:3000/books/getbooks')
+    this.token2 = this.token?.toString()
+    // console.log("token in getBooks is : "+this.token2)
+    return this.http.get<Book[]>('http://localhost:3000/books/getbooks',{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   getBook(id:number):Observable<Book>{
-    return this.http.get<Book>("http://localhost:3000/books/getbook/"+id)
+    this.token2 = this.token?.toString()
+    return this.http.get<Book>("http://localhost:3000/books/getbook/"+id,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   putRentBooks(id: number, bookObj: any): Observable<any> {
-    return this.http.put("http://localhost:3000/books/rentbook/" + id, bookObj)
+    this.token2 = this.token?.toString()
+    return this.http.put("http://localhost:3000/books/rentbook/" + id, bookObj,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   getRentBooks(username :any): Observable<Book[]>{
-    return this.http.get<Book[]>('http://localhost:3000/books/getbookusername/'+username)
+    this.token2 = this.token?.toString()
+    return this.http.get<Book[]>('http://localhost:3000/books/getbookusername/'+username,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   addtowishlist(wishlist : any): Observable<any>{
-    return this.http.post("http://localhost:3000/wishlists/addwhishlist", wishlist)
+    this.token2 = this.token?.toString()
+    return this.http.post("http://localhost:3000/wishlists/addwhishlist", wishlist,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   getwishlist(username:any): Observable<Wishlist[]>{
-    return this.http.get<Wishlist[]>("http://localhost:3000/wishlists/getwishlist/"+username)
+    this.token2 = this.token?.toString()
+    return this.http.get<Wishlist[]>("http://localhost:3000/wishlists/getwishlist/"+username,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   removeFromWishlist(id:any):Observable<any>{
-    return this.http.delete("http://localhost:3000/wishlists/removefromwishlist/"+id)
+    this.token2 = this.token?.toString()
+    return this.http.delete("http://localhost:3000/wishlists/removefromwishlist/"+id,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   deleteBook(id: number): Observable<any> {
-    return this.http.delete("http://localhost:3000/books/deletebook/" + id)
+    this.token2 = this.token?.toString()
+    return this.http.delete("http://localhost:3000/books/deletebook/" + id,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   addBook(User: {_id:any, title: any; author: any; category: any; isRented: boolean; }) {
     console.log(User);
-    return this.http.post("http://localhost:3000/books/addbook/", User)
+    this.token2 = this.token?.toString()
+    return this.http.post("http://localhost:3000/books/addbook/", User,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   editBook(id:number,User: Book): Observable<any> {
-    return this.http.put("http://localhost:3000/books/updatebook/"+id, User)
+    this.token2 = this.token?.toString()
+    return this.http.put("http://localhost:3000/books/updatebook/"+id, User,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
   
   addtocart(cart : any): Observable<any>{
-    return this.http.post("http://localhost:3000/carts/addcart", cart)
+    this.token2 = this.token?.toString()
+    return this.http.post("http://localhost:3000/carts/addcart", cart,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   getcart(username:any): Observable<Cart[]>{
-    return this.http.get<Cart[]>("http://localhost:3000/carts/getcart/"+username)
+    this.token2 = this.token?.toString()
+    return this.http.get<Cart[]>("http://localhost:3000/carts/getcart/"+username,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
   removeFromCart(id:any):Observable<any>{
-    return this.http.delete("http://localhost:3000/carts/removefromcart/"+id)
+    this.token2 = this.token?.toString()
+    return this.http.delete("http://localhost:3000/carts/removefromcart/"+id,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
   
