@@ -4,7 +4,7 @@
 </div>
   <form #addNewBookForm="ngForm" (submit)="addNewBook(addNewBookForm)" class="panel-body" id="addbook">
     <div class="form-group">
-      <label for="id">id:</label>
+      <label for="id">Code:</label>
       <input type="number"  placeholder="Enter id" class="form-control"
        name="id"  required ngModel/>
     </div>
@@ -49,6 +49,7 @@
     </div>
 
     <button type="submit" class="btn btn-success" [disabled]="!addNewBookForm.valid" id="addsubmit">Submit</button>
+    <button class="btn btn-primary" id='back-button' (click)=toInventory() >Back</button>
   </form>
-  <button class="btn btn-primary" id='back-button' (click)=toInventory() ><-Back</button>
+
 </div>

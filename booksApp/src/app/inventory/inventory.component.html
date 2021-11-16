@@ -21,12 +21,14 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h2>Book List</h2>
+    <h2>Welcome Admin</h2>
+    <h3>Bookies</h3>
   </div>
   <div class="panel-body">
     <table class="table table-striped ">
       <thead>
-        <th>ID</th>
+
+        <th>Code</th>
         <th>Name</th>
         <th>Author</th>
         <th>Category</th>
@@ -38,7 +40,7 @@
           <td>{{ book.author }}</td>
           <td>{{ book.category }}</td>
           <td *ngIf="!book.isRented">
-            <button type="button"  data-target="#exampleModal"
+            <button type="button" style="margin-right:5px" data-target="#exampleModal"
               class="btn btn-success " (click)="editnav(book._id)"
               >Edit Book</button>
 

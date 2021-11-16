@@ -2,10 +2,14 @@ input.ng-touched.ng-invalid {
   border:1px solid red;
 }
 
+#reset-button{
+  float:right;
+  margin-right:5px;
+}
 #back-button{
   float:right;
-  width:10%;
-  height:30px
+  /* width:10%;
+  height:30px */
 }
 
 #editbook{
@@ -26,6 +30,3 @@ input.ng-touched.ng-invalid {
   padding:3px;
 }
 
-#reset-button{
-  float:right;
-}

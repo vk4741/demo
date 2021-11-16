@@ -25,8 +25,16 @@ export class InventoryComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.bookdataService.deleteBook(id).subscribe();
-    window.location.reload();
+    var r = confirm("Are you sure you want to delete this book?");
+    if (r == true) {
+      this.bookdataService.deleteBook(id).subscribe();
+      
+      window.location.reload();
+      alert("Book deleted successfully")
+    
+    } else {
+      window.location.reload();
+    }
   }
   addnav() {
     this.router.navigate(['/addbooks']);

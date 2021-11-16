@@ -16,6 +16,7 @@ export class BooksListComponent implements OnInit {
   booksList !: Array<Book>
   wishlist : Array<Wishlist> = []
   cart : Array<Cart> = []
+  uname!:any
   constructor(private  bookdataService : BooksdataService, private data :  DataService) { }
 
   ngOnInit(): void {
@@ -25,7 +26,7 @@ export class BooksListComponent implements OnInit {
       this.booksList = books
     },err => console.log("Error in fetching books"+err))
     console.log("Username  from booklist"+ window.localStorage.getItem('username'))
-
+   this.uname = window.localStorage.getItem('username')
     this.bookdataService.getwishlist(window.localStorage.getItem('username')).subscribe(wishlist => {
       this.wishlist = wishlist
       console.log(this.wishlist)
@@ -40,7 +41,9 @@ export class BooksListComponent implements OnInit {
   //   this.bookdataService.putRentBooks(id,{isRented:true,username:window.localStorage.getItem('username')}).subscribe()
   //   window.location.reload()
   // }
-
+  getuname(){
+    return localStorage.getItem('username')
+  }
   addtowishlist(id:number){
     var flag = false
     console.log("Add to wishlist called")

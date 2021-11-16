@@ -28,10 +28,11 @@
     </div>
 
     <button type="submit" class="btn btn-success" (click)="update()" [disabled]="!updateBookForm.valid" id="editsubmit">Update</button>
-    
+    <button class="btn btn-primary" id='back-button' (click)=toInventory() >Back</button>
     <button class="btn btn-secondary" (click)="resetdefault()" id="reset-button">Reset</button>
+    
   </form>
 
 
-  <button class="btn btn-primary" id='back-button' (click)=toInventory() ><-Back</button>
+  
 </div>
