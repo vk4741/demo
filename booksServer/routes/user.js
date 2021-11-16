@@ -1,5 +1,6 @@
 const router = require('express').Router()
 var User = require('../User.model')
+const bcrypt = require('bcrypt')
 
 router.get('/getusers',(req,res)=>{
     User.find({},(err,Users)=>{
@@ -23,7 +24,7 @@ router.get('/getuser/:id',(req,res)=>{
     })
 })
 
-router.post('/adduser',(req,res)=>{
+router.post('/adduser',async(req,res)=>{
     var newUser = new User({
         _id: req.body._id,
         fname: req.body.fname,
@@ -32,6 +33,9 @@ router.post('/adduser',(req,res)=>{
         email: req.body.email,
         role: req.body.role
     })
+
+    const salt = await bcrypt.genSalt(10)
+    newUser.password = await bcrypt.hash(newUser.password,salt)
     
     newUser.save((err,user)=>{
         if(err){
@@ -49,17 +53,18 @@ router.post('/login',async(req,res)=>{
     const password =  req.body.password
 
     const user = await User.findOne({_id:id})
-    
-    if(user.password == password){
+    const validPassword = await bcrypt.compare(password,user.password)
+
+    if(validPassword){
         res.json(user)
     }
     else{
-        res.json({message:'invalid password'})
+        res.json({message:"Invalid password"})
     }
  }
  catch{
     console.log('Invalid username or user does not exits')
-    return res.status(200).json("Invalid_username")
+    return res.json({message:"Invalid username user does not exits"})
     
  }
 })

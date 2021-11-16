@@ -30,7 +30,6 @@ var userSchema = new Schema({
         type: String,
         required: true,
         minlength: 4,
-        maxlength: 1024
     },
     role:{
         type: String
