@@ -13,9 +13,19 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 
 const routes: Routes = [
   {
+    path:'',
+    redirectTo:'login',
+    pathMatch: 'full'
+  },
+  {
     path: 'homepage',
     component: HomepageComponent,
     children:[
+      {
+        path: '',
+        redirectTo: 'booklist',
+        pathMatch: 'full'
+      },
       {
         path:'booklist',
         component:BooksListComponent
