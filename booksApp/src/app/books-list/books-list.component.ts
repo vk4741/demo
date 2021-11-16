@@ -36,10 +36,10 @@ export class BooksListComponent implements OnInit {
     })
   }
 
-  rentBook(id:number){
-    this.bookdataService.putRentBooks(id,{isRented:true,username:window.localStorage.getItem('username')}).subscribe()
-    window.location.reload()
-  }
+  // rentBook(id:number){
+  //   this.bookdataService.putRentBooks(id,{isRented:true,username:window.localStorage.getItem('username')}).subscribe()
+  //   window.location.reload()
+  // }
 
   addtowishlist(id:number){
     var flag = false

@@ -48,7 +48,6 @@
           <th>Name</th>
           <th>Author</th>
           <th>Category</th>
-          <th>Book Status</th>
         </thead>
         <tbody>
           <tr *ngFor="let book of booksList | filter:searchText">
@@ -56,8 +55,6 @@
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.category }}</td>
-            <td *ngIf="!book.isRented"><button  (click)="rentBook(book._id)">Rent</button></td>
-            <td *ngIf="book.isRented"><p>Book rented</p></td>
             <td><button (click)= "addtowishlist(book._id)">Add to wishlist</button></td>
             <td *ngIf="!book.isRented"><button (click)= "addtocart(book._id)">Add to Cart</button></td>
           </tr>
