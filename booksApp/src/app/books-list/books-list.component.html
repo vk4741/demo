@@ -22,27 +22,48 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h2>Book List</h2>
+    <div class="input-group">
+      <div class="form-outline">
+        <label class="form-label" for="form1">Search</label>
+        <input id="search-input" type="search" id="form1" class="form-control"  name="search" 
+        [(ngModel)]="searchText" autocomplete="off" placeholder="Search Books" />
+        
+      </div>
+    </div>
   </div>
-  <div class="panel-body">
-    <table class="table table-striped ">
-      <thead>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Author</th>
-        <th>Category</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let book of booksList">
-          <td>{{ book._id }}</td>
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.category }}</td>
-          <td *ngIf="!book.isRented"><button (click)="rentBook(book._id)">Rent</button></td>
-          <td *ngIf="book.isRented"><p>Book rented</p></td>
-          <td><button (click)= "addtowishlist(book._id)">Add to wishlist</button></td>
-          <td *ngIf="!book.isRented"><button (click)= "addtocart(book._id)">Add to Cart</button></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <app-filter (filterBooks)="getfilteredBooks($event)" (allBookEvent)="allbook($event)"></app-filter>
+      </div>
+    </div>
   </div>
+    
+
+
+    <div class="panel-body">
+      <table class="table table-striped ">
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Category</th>
+          <th>Book Status</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of booksList | filter:searchText">
+            <td>{{ book._id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.category }}</td>
+            <td *ngIf="!book.isRented"><button  (click)="rentBook(book._id)">Rent</button></td>
+            <td *ngIf="book.isRented"><p>Book rented</p></td>
+            <td><button (click)= "addtowishlist(book._id)">Add to wishlist</button></td>
+            <td *ngIf="!book.isRented"><button (click)= "addtocart(book._id)">Add to Cart</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  
 </div>

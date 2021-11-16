@@ -1,0 +1,38 @@
+<aside class="col-sm-4">
+    <p>Filter </p>
+    
+    
+    
+    <div class="card">
+      
+      <article class="card-group-item">
+        <header class="card-header">
+          <h6 class="title">Book Category </h6>
+        </header>
+        <div class="filter-content">
+          <div class="card-body">
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round">4</span>
+                <input (click)="allbook()" type="checkbox" class="custom-control-input" id="Check1">
+                <label class="custom-control-label" for="Check1">All Books</label>
+            </div> <!-- form-check.// -->
+    
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round">2</span>
+                <input (click)="filterCategory('CS')" type="checkbox" class="custom-control-input" id="Check2">
+               <label class="custom-control-label" for="Check2">Computer Science</label>
+            </div> <!-- form-check.// -->
+    
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round">2</span>
+                <input (click)="filterCategory('knowledge')" type="checkbox" class="custom-control-input" id="Check3">
+                <label class="custom-control-label" for="Check3">Knowledge</label>
+            </div> <!-- form-check.// -->
+          </div> <!-- card-body.// -->
+        </div>
+      </article> <!-- card-group-item.// -->
+    </div> <!-- card.// -->
+    
+    
+    
+  </aside>

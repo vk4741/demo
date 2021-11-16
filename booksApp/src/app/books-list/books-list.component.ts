@@ -11,7 +11,7 @@ import { Wishlist } from '../wishlist';
   styleUrls: ['./books-list.component.css']
 })
 export class BooksListComponent implements OnInit {
-
+  searchText : any;
   username !:string
   booksList !: Array<Book>
   wishlist : Array<Wishlist> = []
@@ -69,6 +69,15 @@ export class BooksListComponent implements OnInit {
       alert("Can add only 3 books to wishlist")
     }
     
+  }
+  getfilteredBooks(value:any){
+    this.booksList=this.booksList.filter((item:any)=> item.category==value)
+    //console.log(this.bookList)
+    
+  }
+  allbook(value:any){
+    if(value)
+    this.ngOnInit();
   }
   addtocart(id:number){
     var flag = false

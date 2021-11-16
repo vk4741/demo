@@ -16,6 +16,8 @@ import { EditbookComponent } from './editbook/editbook.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { CartComponent } from './cart/cart.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { UserRegistrationComponent } from './user-registration/user-registration
     EditbookComponent,
     InventoryComponent,
     CartComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
