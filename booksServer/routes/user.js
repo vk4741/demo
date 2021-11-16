@@ -1,6 +1,10 @@
 const router = require('express').Router()
 var User = require('../User.model')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const dotEnv = require('dotenv')
+dotEnv.config()
+const auth = require("../middleware/auth");
 
 router.get('/getusers',(req,res)=>{
     User.find({},(err,Users)=>{
@@ -36,6 +40,16 @@ router.post('/adduser',async(req,res)=>{
 
     const salt = await bcrypt.genSalt(10)
     newUser.password = await bcrypt.hash(newUser.password,salt)
+
+    const token = jwt.sign(
+        { user_id: newUser._id},
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: "2h",
+        }
+      );   
+
+      newUser.token = token
     
     newUser.save((err,user)=>{
         if(err){
@@ -56,6 +70,16 @@ router.post('/login',async(req,res)=>{
     const validPassword = await bcrypt.compare(password,user.password)
 
     if(validPassword){
+
+        const token = jwt.sign(
+            { user_id: user._id},
+            process.env.TOKEN_KEY,
+            {
+              expiresIn: "2h",
+            }
+          );
+
+          user.token = token
         res.json(user)
     }
     else{
@@ -68,6 +92,11 @@ router.post('/login',async(req,res)=>{
     
  }
 })
+
+router.post("/welcome", auth, (req, res) => {
+    res.status(200).send("Welcome 🙌 ");
+  });
+
 
 
 module.exports = router

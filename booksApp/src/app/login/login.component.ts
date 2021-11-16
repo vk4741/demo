@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       else {
         console.log(this.user)
         window.localStorage.setItem('username', this.user._id)
+        sessionStorage.setItem('token', this.user.token)
         if (this.user.role === 'user') {
           console.log("username stored is localstorage " + window.localStorage.getItem('username'))
           this.router.navigate(['homepage'])

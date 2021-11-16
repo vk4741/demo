@@ -1,7 +1,8 @@
 const router = require('express').Router()
 var Whishlist = require('../wishlist.model')
+const auth = require("../middleware/auth");
 
-router.get('/getwishlist/:username',(req,res)=>{
+router.get('/getwishlist/:username',auth,(req,res)=>{
     Whishlist.find({username:req.params.username},(err,wishlist)=>{
         if(err){
             res.send("error had occured"+err)
@@ -12,7 +13,7 @@ router.get('/getwishlist/:username',(req,res)=>{
     })
 })
 
-router.post('/addwhishlist',(req,res)=>{
+router.post('/addwhishlist',auth,(req,res)=>{
     var newWsihlist = new Whishlist({
         username : req.body.username,
         bookid : req.body.bookid
@@ -28,7 +29,7 @@ router.post('/addwhishlist',(req,res)=>{
     })
 })
 
-router.delete('/removefromwishlist/:id',(req,res)=>{
+router.delete('/removefromwishlist/:id',auth,(req,res)=>{
     Whishlist.findOneAndDelete({_id:req.params.id},(err)=>{
         if(err) {
             res.send({message:'Error in removing book from the wishlist'})

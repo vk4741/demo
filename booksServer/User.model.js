@@ -34,6 +34,9 @@ var userSchema = new Schema({
     role:{
         type: String
     },
+    token:{
+        type: String,
+    },
 })
 
 
