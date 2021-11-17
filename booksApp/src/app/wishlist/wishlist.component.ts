@@ -90,7 +90,7 @@ export class WishlistComponent implements OnInit {
     
   }
 
-  removeFromWishlist(bookid:number){
+  removeFromWishlist(bookid:any){
     for(var wish of this.wishlist){
       if(bookid === wish.bookid){
         console.log(wish._id)
@@ -102,7 +102,7 @@ export class WishlistComponent implements OnInit {
     }
   }
 
-  rent(bookid:number){
+  rent(bookid:any){
     this.booksdataService.putRentBooks(bookid,{isRented:true,username:window.localStorage.getItem('username')}).subscribe(response=>{
       console.log(response)
     },error=>{console.log("Error in renting")})

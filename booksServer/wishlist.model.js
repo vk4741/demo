@@ -3,7 +3,7 @@ var Schema = mongoose.Schema
 
 var Whishlistschema = new Schema({
     username : String,
-    bookid : Number
+    bookid : String
 })
 
 module.exports = mongoose.model('Wishlist',Whishlistschema)

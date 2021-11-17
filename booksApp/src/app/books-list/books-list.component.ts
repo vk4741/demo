@@ -44,7 +44,7 @@ export class BooksListComponent implements OnInit {
   getuname(){
     return localStorage.getItem('username')
   }
-  addtowishlist(id:number){
+  addtowishlist(id:any){
     var flag = false
     console.log("Add to wishlist called")
     if(this.wishlist.length < 3){
@@ -82,7 +82,7 @@ export class BooksListComponent implements OnInit {
     if(value)
     this.ngOnInit();
   }
-  addtocart(id:number){
+  addtocart(id:any){
     var flag = false
     console.log("Add to cart called")
     if(this.cart.length < 3){

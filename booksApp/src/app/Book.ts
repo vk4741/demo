@@ -1,6 +1,6 @@
 export class Book
 {
-  _id !: number
+  _id !: any
   title !: string
   author !: string
   category !: string

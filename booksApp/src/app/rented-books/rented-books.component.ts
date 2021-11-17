@@ -23,7 +23,7 @@ export class RentedBooksComponent implements OnInit {
     },err=>console.log('error in fetching data'+err))
   }
 
-  returnBook(id:number){
+  returnBook(id:any){
     this.bookdataService.putRentBooks(id,{isRented:false,username:""}).subscribe()
     window.location.reload()
   }

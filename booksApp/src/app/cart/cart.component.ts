@@ -53,7 +53,7 @@ export class CartComponent implements OnInit {
     }
   }
 
-  removeFromCart(bookid:number){
+  removeFromCart(bookid:any){
     for(var cart of this.cartlist){
       if(bookid === cart.bookid){
         console.log(cart._id)
@@ -64,7 +64,7 @@ export class CartComponent implements OnInit {
       }
     }
   }
-  rent(bookid:number){
+  rent(bookid:any){
     this.booksdataService.putRentBooks(bookid,{isRented:true,username:window.localStorage.getItem('username')}).subscribe(response=>{
       console.log(response)
     },error=>{console.log("Error in renting")})

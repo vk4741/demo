@@ -22,7 +22,7 @@ export class EditbookComponent implements OnInit {
     this.book =new Book()
     this.og_book =new Book()
     this.activatedRoute.params.subscribe(newp=>{
-      this.bookid=parseInt(newp['id']);})
+      this.bookid=newp['id'];})
   }
 
   ngOnInit(): void {

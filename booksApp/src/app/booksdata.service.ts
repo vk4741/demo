@@ -21,12 +21,12 @@ export class BooksdataService {
     return this.http.get<Book[]>('http://localhost:3000/books/getbooks',{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
-  getBook(id:number):Observable<Book>{
+  getBook(id:any):Observable<Book>{
     this.token2 = this.token?.toString()
     return this.http.get<Book>("http://localhost:3000/books/getbook/"+id,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
-  putRentBooks(id: number, bookObj: any): Observable<any> {
+  putRentBooks(id: any, bookObj: any): Observable<any> {
     this.token2 = this.token?.toString()
     return this.http.put("http://localhost:3000/books/rentbook/" + id, bookObj,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
@@ -51,7 +51,7 @@ export class BooksdataService {
     return this.http.delete("http://localhost:3000/wishlists/removefromwishlist/"+id,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
-  deleteBook(id: number): Observable<any> {
+  deleteBook(id: any): Observable<any> {
     this.token2 = this.token?.toString()
     return this.http.delete("http://localhost:3000/books/deletebook/" + id,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
@@ -62,7 +62,7 @@ export class BooksdataService {
     return this.http.post("http://localhost:3000/books/addbook/", User,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
 
-  editBook(id:number,User: Book): Observable<any> {
+  editBook(id:any,User: Book): Observable<any> {
     this.token2 = this.token?.toString()
     return this.http.put("http://localhost:3000/books/updatebook/"+id, User,{headers:new HttpHeaders().append('x-access-token',this.token2)})
   }
