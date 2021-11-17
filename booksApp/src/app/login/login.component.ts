@@ -36,10 +36,10 @@ export class LoginComponent implements OnInit {
       }
       else {
         console.log(this.user)
-        window.localStorage.setItem('username', this.user._id)
+        sessionStorage.setItem('username', this.user._id)
         sessionStorage.setItem('token', this.user.token)
         if (this.user.role === 'user') {
-          console.log("username stored is localstorage " + window.localStorage.getItem('username'))
+          console.log("username stored is localstorage " + sessionStorage.getItem('username'))
           this.router.navigate(['homepage'])
         }
         else if (this.user.role === 'admin') {
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       }
     }, 700)
     // this.data.changeusername(this.username)
-    // window.localStorage.setItem('username',this.username)
+    // sessionStorage.setItem('username',this.username)
     // this.router.navigate(['homepage'])
   }
 
