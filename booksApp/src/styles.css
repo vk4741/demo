@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* @import "~bootstrap/dist/css/bootstrap.min.css"; */
+table {
+    counter-reset: rowNumber;
+  }
+  
+  table tr {
+    counter-increment: rowNumber;
+  }
+  
+  table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+  }
