@@ -9,8 +9,10 @@ import { Cart } from '../cart';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartlist : Array<Cart> = []
-  booklist : Array<Book> = []
+  cartlist: Array<Cart> = []
+  booklist: Array<Book> = []
+
+  RentedBooklist: Array<Book> = []
   constructor(private booksdataService: BooksdataService) { }
 
   ngOnInit(): void {
@@ -19,7 +21,11 @@ export class CartComponent implements OnInit {
       this.cartlist = cart
     })
 
-    setTimeout(()=>{
+    this.booksdataService.getRentBooks(window.localStorage.getItem('username')).subscribe(books => {
+      this.RentedBooklist = books
+    }, err => console.log('error in fetching data' + err))
+
+    setTimeout(() => {
       if (this.cartlist.length > 0) {
         for (var wish of this.cartlist) {
           console.log(wish.bookid)
@@ -28,9 +34,9 @@ export class CartComponent implements OnInit {
             this.booklist.push(book)
           })
         }
-  
+
       }
-    },1000)
+    }, 1000)
   }
 
   showcartlist() {
@@ -48,28 +54,33 @@ export class CartComponent implements OnInit {
 
   getcartlist() {
     console.log("booklist length is " + this.booklist.length)
-    for (var book of this.booklist){
+    for (var book of this.booklist) {
       console.log(book.title)
     }
   }
 
-  removeFromCart(bookid:any){
-    for(var cart of this.cartlist){
-      if(bookid === cart.bookid){
+  removeFromCart(bookid: any) {
+    for (var cart of this.cartlist) {
+      if (bookid === cart.bookid) {
         console.log(cart._id)
-        this.booksdataService.removeFromCart(cart._id).subscribe(response=>{
+        this.booksdataService.removeFromCart(cart._id).subscribe(response => {
           console.log(response)
-        },err=>{console.log("Error in removing from cart"+err)})
+        }, err => { console.log("Error in removing from cart" + err) })
         window.location.reload()
       }
     }
   }
-  rent(bookid:any){
-    this.booksdataService.putRentBooks(bookid,{isRented:true,username:window.localStorage.getItem('username')}).subscribe(response=>{
-      console.log(response)
-    },error=>{console.log("Error in renting")})
-    window.location.reload()
-    this.removeFromCart(bookid)
+  rent(bookid: any) {
+    if (this.RentedBooklist.length < 3) {
+      this.booksdataService.putRentBooks(bookid, { isRented: true, username: window.localStorage.getItem('username') }).subscribe(response => {
+        console.log(response)
+      }, error => { console.log("Error in renting") })
+      window.location.reload()
+      this.removeFromCart(bookid)
+    }
+    else{
+      alert("Can rent manximum 3 books")
+    }
   }
 }
 
