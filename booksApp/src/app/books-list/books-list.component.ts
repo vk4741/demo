@@ -47,16 +47,12 @@ export class BooksListComponent implements OnInit {
   addtowishlist(id:any){
     var flag = false
     console.log("Add to wishlist called")
-    if(this.wishlist.length < 3){
-
         for (var wish of this.wishlist){
           if(id == wish.bookid){
             flag = true
             break
           }
         }
-      
-
       if(flag == false){
        alert("Book added to wishlist")
       this.bookdataService.addtowishlist({username : window.localStorage.getItem('username'), bookid:id}).subscribe()
@@ -66,11 +62,6 @@ export class BooksListComponent implements OnInit {
       else{
         alert("Book already added to wishlist")
       }
-      
-    }
-    else{
-      alert("Can add only 3 books to wishlist")
-    }
     
   }
   getfilteredBooks(value:any){
