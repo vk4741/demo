@@ -58,7 +58,8 @@ const routes: Routes = [
   },
   {
     path: 'inventory',
-    component: InventoryComponent
+    component: InventoryComponent,
+    // canActivate: [false]
   },
   {
     path: 'userRegistration',

@@ -14,7 +14,7 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.currentUsername.subscribe(username =>this.username = username)
-    console.log("Username from homepage "+ window.localStorage.getItem('username'))
+    console.log("Username from homepage "+ sessionStorage.getItem('username'))
   }
 
 }

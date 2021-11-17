@@ -25,20 +25,20 @@ export class BooksListComponent implements OnInit {
     this.bookdataService.getBooks().subscribe(books=>{
       this.booksList = books
     },err => console.log("Error in fetching books"+err))
-    console.log("Username  from booklist"+ window.localStorage.getItem('username'))
-   this.uname = window.localStorage.getItem('username')
-    this.bookdataService.getwishlist(window.localStorage.getItem('username')).subscribe(wishlist => {
+    console.log("Username  from booklist"+ sessionStorage.getItem('username'))
+   this.uname = sessionStorage.getItem('username')
+    this.bookdataService.getwishlist(sessionStorage.getItem('username')).subscribe(wishlist => {
       this.wishlist = wishlist
       console.log(this.wishlist)
     })
-    this.bookdataService.getcart(window.localStorage.getItem('username')).subscribe(cart=> {
+    this.bookdataService.getcart(sessionStorage.getItem('username')).subscribe(cart=> {
       this.cart = cart
       console.log("Here"+this.cart)
     })
   }
 
   // rentBook(id:number){
-  //   this.bookdataService.putRentBooks(id,{isRented:true,username:window.localStorage.getItem('username')}).subscribe()
+  //   this.bookdataService.putRentBooks(id,{isRented:true,username:sessionStorage.getItem('username')}).subscribe()
   //   window.location.reload()
   // }
   getuname(){
